@@ -18,6 +18,8 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" href="./css/custom-style.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!--===============================================================================================-->
 </head>
 <body>
@@ -29,36 +31,37 @@
 		<!-- <div class="simpleslide100-item bg-img1" style="background-image: url('images/bg02.jpg');"></div>
 		<div class="simpleslide100-item bg-img1" style="background-image: url('images/bg03.jpg');"></div> -->
 	</div>
-
 	<div class="size1 overlay1">
 		<!--  -->
 		<div class="size1 flex-col-c-m p-l-15 p-r-15 p-t-50 p-b-50">
 			<h3 class="l1-txt1 txt-center p-b-25">
 				Coming Soon
 			</h3>
-
+			<div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
+				<img src="images/isaac james cv.jpg" alt="" srcset="" style="">
+			</div>
 			<p class="m2-txt1 txt-center p-b-48">
 				Hi! I'm <strong>Isaac James.</strong> My website is under construction, follow me for update now!
 			</p>
 
 			<div class="flex-w flex-c-m cd100 p-b-33">
 				<div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
-					<span class="l2-txt1 p-b-9 days">20</span>
+					<span id="days" class="l2-txt1 p-b-9 days"></span>
 					<span class="s2-txt1">Days</span>
 				</div>
 
 				<div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
-					<span class="l2-txt1 p-b-9 hours">17</span>
+					<span id="hours" class="l2-txt1 p-b-9 hours"></span>
 					<span class="s2-txt1">Hours</span>
 				</div>
 
 				<div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
-					<span class="l2-txt1 p-b-9 minutes">50</span>
+					<span id="minutes" class="l2-txt1 p-b-9 minutes"></span>
 					<span class="s2-txt1">Minutes</span>
 				</div>
 
 				<div class="flex-col-c-m size2 bor1 m-l-15 m-r-15 m-b-20">
-					<span class="l2-txt1 p-b-9 seconds">5</span>
+					<span id="seconds" class="l2-txt1 p-b-9 seconds"></span>
 					<span class="s2-txt1">Seconds</span>
 				</div>
 			</div>
@@ -92,16 +95,28 @@
 	<script src="vendor/countdowntime/moment-timezone.min.js"></script>
 	<script src="vendor/countdowntime/moment-timezone-with-data.min.js"></script>
 	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script src="js/moment.js"></script>
 	<script>
+		// calcular segundos
+		var now = moment(new Date());
+		var end = moment(new Date("January 10, 2019 00:00:00")); // another date
+		var duration = moment.duration(end.diff(now));
+		var seg = duration.asSeconds();
+		// ---------
+		let days = ((seg/60/60/24))
+		let hours = (seg/60/60)%24
+		let minutes = (seg/60)%60
+		let seconds = seg%60
+		// ---------------------
 		$('.cd100').countdown100({
 			/*Set Endtime here*/
 			/*Endtime must be > current time*/
 			endtimeYear: 0,
 			endtimeMonth: 0,
-			endtimeDate: 35,
-			endtimeHours: 18,
-			endtimeMinutes: 0,
-			endtimeSeconds: 0,
+			endtimeDate: days,
+			endtimeHours: hours,
+			endtimeMinutes: minutes,
+			endtimeSeconds: seconds,
 			timeZone: "" 
 			// ex:  timeZone: "America/New_York"
 			//go to " http://momentjs.com/timezone/ " to get timezone
@@ -116,6 +131,5 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-
 </body>
 </html>
